@@ -13,9 +13,11 @@ const player2Scoreboard = document.getElementById("player2Scoreboard")
 const message = document.getElementById("message")
 const rollBtn = document.getElementById("rollBtn")
 const resetBtn = document.getElementById("resetBtn")
+const dmgBtn = document.getElementById("dmgBtn")
 
 function showResetButton() {
     rollBtn.style.display = "none"
+    dmgBtn.style.display ="none"
     resetBtn.style.display = "block"
 }
 
@@ -41,11 +43,14 @@ function showResetButton() {
         p2Turns += 1
     }
     
-    if (player2Score >= 20) {
+    if (player2Score >= 20 & (player2Score > player1Score)) {
         message.textContent = "Player 2 Won 🥳"
         showResetButton()
-    }  else if (player1Score >= 20 &(p1Turns === p2Turns)) {
+    }  else if (player1Score >= 20 &(p1Turns === p2Turns)& (player1Score > player2Score)) {
         message.textContent = "Player 1 Won 🎉"
+        showResetButton()
+    }else if (player1Score >= 20 &(p1Turns === p2Turns)& (player1Score === player2Score)){
+        message.textContent = "DRAW???!!!! "
         showResetButton()
     }
     player1Turn = !player1Turn
@@ -66,6 +71,7 @@ function reset() {
     message.textContent = "Player 1 Turn"
     resetBtn.style.display = "none"
     rollBtn.style.display = "block"
+    dmgBtn.style.display = "block"
     player2Dice.classList.remove("active")
     player1Dice.classList.add("active")
 }
