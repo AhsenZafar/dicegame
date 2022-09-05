@@ -60,6 +60,36 @@ resetBtn.addEventListener("click", function(){
     reset()
 })
 
+dmgBtn.addEventListener("click", function(){
+    const randomNumber = Math.floor(Math.random() * 6) + 1
+    
+     if (player1Turn) {
+        player2Score -= randomNumber
+        player2Scoreboard.textContent = player2Score
+        player1Dice.textContent = -randomNumber
+        player1Dice.classList.remove("active")
+        player2Dice.classList.add("active")
+        message.textContent = "Player 2 Turn"
+        p1Turns += 1
+    } else {
+        player1Score -= randomNumber
+        player1Scoreboard.textContent = player1Score
+        player2Dice.textContent = -randomNumber
+        player2Dice.classList.remove("active")
+        player1Dice.classList.add("active")
+        message.textContent = "Player 1 Turn"
+        p2Turns += 1}
+    if (player1Score < 0 || player2Score < 0){
+        message.textContent = "You Both Lose!"
+        showResetButton()
+    }
+    player1Turn = !player1Turn
+ })
+
+
+
+
+
 function reset() {
     player1Score = 0
     player2Score = 0
